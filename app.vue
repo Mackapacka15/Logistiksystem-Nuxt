@@ -1,12 +1,20 @@
+import { NuxtPage } from './.nuxt/components';
+
 <template>
   <div>
     <div>
       <header>
         <h1>Logistiksystem</h1>
         <nav class="navbar">
-          <nuxt-link to="/">Home</nuxt-link>
+          <nuxt-link class="nav-item" to="/">Home</nuxt-link>
+          <nuxt-link class="nav-item" to="/orders">Orders</nuxt-link>
+          <nuxt-link class="nav-item" to="/">Workers</nuxt-link>
         </nav>
       </header>
+    </div>
+
+    <div>
+      <NuxtPage />
     </div>
   </div>
 </template>
@@ -15,14 +23,30 @@
 header {
   text-align: center;
 }
+h1 {
+  margin: 1rem;
+}
+
 .navbar {
-  background-color: olivedrab;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
+  width: 100%;
+  background-color: rgb(73, 188, 255);
 }
-.navbar * {
-  width: auto;
-  background-color: red;
+.nav-item {
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0.7rem;
+  width: 100%;
+  background-color: rgb(73, 188, 255);
+  color: black;
+  text-decoration: none;
+  transition: background 100ms linear;
+  border-radius: 3px;
+}
+.nav-item:hover {
+  background-color: rgb(4, 141, 220);
+  color: rgb(240, 240, 240);
 }
 </style>
