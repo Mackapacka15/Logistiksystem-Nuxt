@@ -5,6 +5,6 @@ export const itemSchema = new mongoose.Schema({
   price: { type: Number },
 });
 
-export type itemModel = InferSchemaType<typeof itemSchema>;
+export type itemType = InferSchemaType<typeof itemSchema>;
 
-export default mongoose.model("itemSchemas", itemSchema);
+export default mongoose.model("itemSchema", itemSchema);

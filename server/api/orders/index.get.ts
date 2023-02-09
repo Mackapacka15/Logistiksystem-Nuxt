@@ -1,7 +1,7 @@
-import orderModel, { orderSchema } from "~~/schemas/order";
+import orderModel, { orderType } from "~~/schemas/order";
 
 export default defineEventHandler(async () => {
   const result = await orderModel.find({});
 
-  return result as orderSchema[];
+  return result as orderType[];
 });

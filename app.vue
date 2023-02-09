@@ -1,5 +1,3 @@
-import { NuxtPage } from './.nuxt/components';
-
 <template>
   <div>
     <div>
@@ -44,6 +42,7 @@ h1 {
   text-decoration: none;
   transition: background 100ms linear;
   border-radius: 3px;
+  border: 1px solid black;
 }
 .nav-item:hover {
   background-color: rgb(4, 141, 220);

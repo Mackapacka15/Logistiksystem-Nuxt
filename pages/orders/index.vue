@@ -10,51 +10,48 @@ const { data: orders } = await useFetch("/api/orders");
       <span>Date Received</span>
       <span>Total Value</span>
     </div>
-    <div v-for="order in orders" class="ind-order">
+    <nuxt-link
+      v-for="order in orders"
+      class="ind-order"
+      :to="'/orders/' + order.orderNumber"
+    >
       <div class="order-container">
         <span>{{ order.orderNumber }}</span>
         <span>{{ order.customer }}</span>
         <span>{{ dateFormatter(order.date) }}</span>
-        <span>{{ order.orderValue }}</span>
+        <span>{{ order.orderValue }} kr</span>
       </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
 <script lang="ts">
-function dateFormatter(date: Date): string {
-  let split = (date as unknown as string).split("");
-  return (
-    split[8] +
-    split[9] +
-    " - " +
-    split[5] +
-    split[6] +
-    " - " +
-    split[0] +
-    split[1] +
-    split[2] +
-    split[3] +
-    " " +
-    split[11] +
-    split[12] +
-    split[13] +
-    split[14] +
-    split[15]
-  );
+function dateFormatter(date: any): string {
+  // console.dir(typeof date);
+  const dateObject = new Date(Date.parse(date));
+
+  return dateObject
+    .toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+    .replace(",", "");
 }
 </script>
 
 <style>
 .order-header {
   display: grid;
-  grid-template-columns: 10% 1fr 20% 20%;
+  grid-template-columns: 10% 1fr 10% 10%;
   width: 80%;
   background-color: rgb(160, 219, 160);
 }
 .order-container {
   display: grid;
-  grid-template-columns: 10% 1fr 20% 20%;
+  grid-template-columns: 10% 1fr 10% 10%;
   padding: 0;
 }
 .order-container * {
@@ -80,10 +77,16 @@ function dateFormatter(date: Date): string {
   display: flex;
   align-items: center;
   flex-flow: column nowrap;
+  margin-top: 1rem;
 }
 .ind-order {
   background-color: yellow;
   width: 80%;
+  text-decoration: none;
+  color: black;
+}
+.ind-order:hover {
+  background-color: rgb(222, 222, 1);
 }
 .ind-order span {
   padding: 1rem;
