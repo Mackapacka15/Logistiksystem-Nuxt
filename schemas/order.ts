@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType } from "mongoose";
+import mongoose, { type InferSchemaType } from "mongoose";
 import { orderItemSchema } from "./orderItem.js";
 import { plugin } from "mongoose-auto-increment";
 

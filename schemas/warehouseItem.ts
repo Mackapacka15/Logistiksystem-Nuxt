@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType } from "mongoose";
+import mongoose, { type InferSchemaType } from "mongoose";
 
 export const warehouseItemSchema = new mongoose.Schema({
   parentItemId: { type: mongoose.Types.ObjectId, ref: "itemSchemas" },

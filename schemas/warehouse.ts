@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType } from "mongoose";
+import mongoose, { type InferSchemaType } from "mongoose";
 import { warehouseItemSchema } from "./warehouseItem.js";
 
 const warehouseSchema = new mongoose.Schema({

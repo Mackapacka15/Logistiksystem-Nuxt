@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType } from "mongoose";
+import mongoose, { type InferSchemaType } from "mongoose";
 import { scheduleSchema } from "./schedule.js";
 
 const personSchema = new mongoose.Schema({

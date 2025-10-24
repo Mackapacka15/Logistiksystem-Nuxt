@@ -1,4 +1,4 @@
-import mongoose, { InferSchemaType } from "mongoose";
+import mongoose, { type InferSchemaType } from "mongoose";
 
 export const orderItemSchema = new mongoose.Schema({
   parentId: { type: mongoose.Types.ObjectId, require: true },
