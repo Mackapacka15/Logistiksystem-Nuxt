@@ -1,14 +1,11 @@
 import mongoose from "mongoose";
-import item, { itemType } from "~~/schemas/item";
-import order, { orderType } from "~~/schemas/order";
+import item from "@/schemas/item";
+import order from "@/schemas/order";
 
 export default defineEventHandler(async (event) => {
-  let body = await readBody(event);
-  console.log("body: ");
+  const body = await readBody(event);
 
-  console.log(body.customer);
-
-  let newOrderItems: {
+  const newOrderItems: {
     parentId: mongoose.Types.ObjectId;
     ammount: Number;
   }[] = [];
