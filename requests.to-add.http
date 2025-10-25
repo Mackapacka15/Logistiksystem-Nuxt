@@ -1,0 +1,122 @@
+@baseUrl = http://localhost:3000/api
+
+### PUT mark order as picked
+PUT {{baseUrl}}/orders/picked
+Content-Type: application/json
+
+{
+  "orderId": "635a6e68ec840c457a97fca5",
+  "pickerId": "63566f933a2ada09f1e66de1"
+}
+
+### PUT mark order as sent
+PUT {{baseUrl}}/order/sent
+Content-Type: application/json
+
+{
+  "orderId": "63510af84d38194930466572",
+  "senderId": "6357d89e1a7374ae8616909b"
+}
+
+### GET not sent order
+GET {{baseUrl}}/order/notsent
+
+### GET total value of sent orders (example: January)
+GET {{baseUrl}}/order/totalvalue/0
+
+### GET most expensive order (example: February)
+GET {{baseUrl}}/order/expensive/1
+
+
+### GET all persons
+GET {{baseUrl}}/person/
+
+### GET working persons (example: monday)
+GET {{baseUrl}}/person/working/mon
+
+### POST create person
+POST {{baseUrl}}/person/
+Content-Type: application/json
+
+{
+  "schedule": {
+    "mon": { "start": "09:00", "end": "17:00", "working": true },
+    "tue": { "start": "09:00", "end": "18:00", "working": true },
+    "wed": { "start": "10:00", "end": "19:00", "working": true },
+    "thu": { "start": "11:00", "end": "20:00", "working": true },
+    "fri": { "start": "12:00", "end": "21:00", "working": true },
+    "sat": { "start": "00:00", "end": "00:00", "working": false },
+    "sun": { "start": "10:00", "end": "00:00", "working": false }
+  },
+  "person": { "name": "Adrian", "role": "Driver" }
+}
+
+### PUT change warehouse
+PUT {{baseUrl}}/person/changewarehouse
+Content-Type: application/json
+
+{
+  "personId": "633ebba5ade664b543281efe",
+  "newWarehouse": "634e8ee50cdd38090649cd5d"
+}
+
+### DELETE remove person
+DELETE {{baseUrl}}/person/removeperson
+Content-Type: application/json
+
+{
+  "personId": "633ebba5ade664b543281efe"
+}
+
+### PUT set order
+PUT {{baseUrl}}/person/setorder
+Content-Type: application/json
+
+{
+  "personId": "63566f933a2ada09f1e66de1",
+  "orderId": "63510af84d38194930466572"
+}
+
+### GET available persons by role (example: picker)
+GET {{baseUrl}}/person/avalable/picker
+
+### POST create warehouse
+POST {{baseUrl}}/warehouse/
+Content-Type: application/json
+
+{ "name": "Älta" }
+
+### DELETE warehouse
+DELETE {{baseUrl}}/warehouse/
+Content-Type: application/json
+
+{ "id": "634e5d2df1a1de0194838eaa" }
+
+### PUT add item to warehouse
+PUT {{baseUrl}}/warehouse/item
+Content-Type: application/json
+
+{
+  "warehouseId": "634e8ee50cdd38090649cd5d",
+  "itemName": "Vintertäcke",
+  "balance": 100,
+  "place": "B3-4"
+}
+
+### GET warehouse item (any warehouse)
+GET {{baseUrl}}/warehouse/item
+Content-Type: application/json
+
+{ "itemName": "Vintertäcke" }
+
+### GET warehouse item (specific by name)
+GET {{baseUrl}}/warehouse/item
+Content-Type: application/json
+
+{ "itemName": "Vintertäcke", "warehouseName": "Älta" }
+
+### GET warehouse item (specific by ID)
+GET {{baseUrl}}/warehouse/item
+Content-Type: application/json
+
+{ "itemName": "Vintertäcke", "warehouseId": "634e8ee50cdd38090649cd5d" }

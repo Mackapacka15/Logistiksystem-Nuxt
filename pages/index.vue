@@ -15,12 +15,33 @@ const { data: items } = await useFetch("/api/items");
         <button type="submit">Send Order</button>
       </div>
     </form>
+
+    <form @submit.prevent="createItem" class="products">
+      <label class="ind-label">
+        <input type="text" name="name" placeholder="Item Name" />
+      </label>
+      <label class="ind-label">
+        <input type="text" name="price" placeholder="Item Price" />
+      </label>
+      <button type="submit">Create Item</button>
+    </form>
   </div>
 </template>
 <script lang="ts">
 function sendOrder() {
-  let test = document.querySelectorAll("input[type='checkbox']:checked");
+  const test = document.querySelectorAll("input[type='checkbox']:checked");
   console.log(test);
+}
+async function createItem(event: Event) {
+  if (!(event.target instanceof HTMLFormElement)) return;
+  const formData = new FormData(event.target);
+  const json = Object.fromEntries(formData.entries());
+  console.log(json);
+  await useFetch("/api/items", {
+    method: "POST",
+    body: json,
+  });
+  window.location.reload();
 }
 </script>
 <style scoped>

@@ -1,0 +1,22 @@
+@baseUrl = http://localhost:3000/api
+
+### POST create item
+POST {{baseUrl}}/items/
+Content-Type: application/json
+
+{ "name": "Pen", "price": 200 }
+
+### POST create order
+POST {{baseUrl}}/orders
+Content-Type: application/json
+
+{
+  "customer": "Markus",
+  "orderItems": [
+    { "itemName": "Vintertäcke", "ammount": 200 }
+  ]
+}
+
+### GET all orders
+GET {{baseUrl}}/orders
+
