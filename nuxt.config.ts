@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   },
   css: ["@/assets/css/global.css"],
   runtimeConfig: {
-    DB_URI: process.env.MONGODB_URI || "mongodb://localhost/logistiksystem",
+    DB_URL: process.env.MONGODB_URL || "localhost",
+    DB_Name: process.env.DB_Name || "logistiksystem",
+    DB_User: process.env.DB_User || "",
+    DB_Password: process.env.DB_Password || "",
   },
 });
