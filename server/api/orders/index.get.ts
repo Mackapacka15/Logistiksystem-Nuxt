@@ -1,4 +1,4 @@
-import orderModel, { type orderType } from "~~/schemas/order";
+import orderModel, { type orderType } from "@/schemas/order";
 
 export default defineEventHandler(async () => {
   const result = await orderModel.find({});

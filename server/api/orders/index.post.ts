@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
 import item from "@/schemas/item";
 import order from "@/schemas/order";
 
@@ -33,23 +33,22 @@ export default defineEventHandler(async (event) => {
     orderValue += newOrderItem.ammount.valueOf() * newOrderItem.indItemValue;
     newOrderItems.push(newOrderItem);
   }
-
-  order
-    .create({
+  try {
+    await order.create({
       customer: body.customer,
       items: newOrderItems,
       orderValue: orderValue,
-    })
-    .then(() => {
-      event.node.res.statusCode = 200;
-      return "Order created";
-    })
-    .catch((err) => {
-      console.log(err);
-
-      throw createError({
-        statusCode: 401,
-        statusMessage: err,
-      });
     });
+
+    event.node.res.statusCode = 200;
+    return "Order created";
+  } catch (err) {
+    console.error(err);
+
+    throw createError({
+      statusCode: 401,
+      // @ts-expect-error
+      statusMessage: err,
+    });
+  }
 });
